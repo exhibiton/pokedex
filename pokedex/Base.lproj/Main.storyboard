@@ -9,6 +9,9 @@
         <mutableArray key="HelveticaNeue.ttc">
             <string>HelveticaNeue</string>
         </mutableArray>
+        <mutableArray key="pokemon.ttf">
+            <string>PokemonSolidNormal</string>
+        </mutableArray>
     </customFonts>
     <scenes>
         <!--View Controller-->
@@ -28,10 +31,44 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5e-Wg-aFF">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PokeDex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDb-oy-7Ym">
+                                        <rect key="frame" x="233" y="16" width="135" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="135" id="Ovq-VG-Ngo"/>
+                                            <constraint firstAttribute="height" constant="39" id="czu-7l-zb3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PokemonSolidNormal" family="Pokemon Solid" pointSize="26"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8F6-jM-pDo">
+                                        <rect key="frame" x="562" y="20" width="30" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="cPQ-Lt-ZuQ"/>
+                                            <constraint firstAttribute="width" constant="30" id="trc-GC-HA1"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Button" image="music2"/>
+                                        <connections>
+                                            <action selector="musicBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fjz-QA-uGH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.054901960784313725" green="0.49019607843137253" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="HDb-oy-7Ym" firstAttribute="top" secondItem="v5e-Wg-aFF" secondAttribute="top" constant="16" id="JP8-Xv-3vy"/>
+                                    <constraint firstAttribute="trailing" secondItem="8F6-jM-pDo" secondAttribute="trailing" constant="8" id="PKR-oH-ZBu"/>
+                                    <constraint firstItem="HDb-oy-7Ym" firstAttribute="centerX" secondItem="v5e-Wg-aFF" secondAttribute="centerX" id="UGb-Qj-sOi"/>
+                                    <constraint firstAttribute="bottom" secondItem="8F6-jM-pDo" secondAttribute="bottom" constant="8" id="ZZv-Qp-oZ0"/>
                                     <constraint firstAttribute="height" constant="55" id="cpN-kA-qa0"/>
+                                    <constraint firstItem="HDb-oy-7Ym" firstAttribute="centerY" secondItem="v5e-Wg-aFF" secondAttribute="centerY" id="hHn-N3-zhh"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hHn-N3-zhh"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3o1-Kd-cKJ">
                                 <rect key="frame" x="20" y="118" width="565" height="462"/>
@@ -43,7 +80,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jlD-Qv-iLw">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PokeCell" id="jlD-Qv-iLw" customClass="PokeCell" customModule="pokedex" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -76,10 +113,14 @@
                                             <constraint firstItem="He3-vJ-uc5" firstAttribute="top" secondItem="AVc-xa-3pa" secondAttribute="bottom" id="l5L-wd-xGy"/>
                                             <constraint firstAttribute="bottom" secondItem="He3-vJ-uc5" secondAttribute="bottom" id="o7S-71-NOG"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="nameLbl" destination="He3-vJ-uc5" id="ROH-nu-Uge"/>
+                                            <outlet property="thumbImg" destination="AVc-xa-3pa" id="4uZ-7z-ehv"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="2AY-hE-LJz">
+                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" searchBarStyle="minimal" placeholder="Search for Pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="2AY-hE-LJz">
                                 <rect key="frame" x="0.0" y="55" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -108,6 +149,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="collection" destination="3o1-Kd-cKJ" id="r1F-ba-WEn"/>
+                        <outlet property="searchBar" destination="2AY-hE-LJz" id="QK4-iu-hnS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,5 +162,6 @@
     <resources>
         <image name="297" width="120" height="120"/>
         <image name="bg" width="1920" height="1200"/>
+        <image name="music2" width="537" height="546"/>
     </resources>
 </document>
